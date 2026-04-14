@@ -1,26 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { HeroSection } from "@/components/HeroSection";
+import { StatsSection } from "@/components/StatsSection";
+import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { AIFeaturesSection } from "@/components/AIFeaturesSection";
+import { HexagonMatchSection } from "@/components/HexagonMatchSection";
+import { ComparisonSection } from "@/components/ComparisonSection";
+import { FeaturesSection } from "@/components/FeaturesSection";
+import { PricingSection } from "@/components/PricingSection";
+import { AboutSection } from "@/components/AboutSection";
+import { FAQSection } from "@/components/FAQSection";
+import { FooterSection } from "@/components/FooterSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Placely — AI-Powered Football Recruitment Platform" },
+      { name: "description", content: "Connecting students and schools through intelligent AI matching. Discover talent, unlock opportunities, and revolutionize football recruitment." },
+      { property: "og:title", content: "Placely — AI-Powered Football Recruitment" },
+      { property: "og:description", content: "The future of football recruitment. AI-powered matching, analytics, and end-to-end workflow." },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="/placeholder.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <Navbar />
+      <HeroSection />
+      <StatsSection />
+      <HowItWorksSection />
+      <AIFeaturesSection />
+      <HexagonMatchSection />
+      <ComparisonSection />
+      <FeaturesSection />
+      <PricingSection />
+      <AboutSection />
+      <FAQSection />
+      <FooterSection />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
