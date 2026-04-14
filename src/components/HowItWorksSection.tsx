@@ -3,89 +3,89 @@ import { motion } from "framer-motion";
 const steps = [
   {
     num: "01",
-    title: "Create Your Profile",
-    desc: "Students build a detailed football profile with skills, stats, and highlight videos.",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    ),
+    title: "Build Your Profile",
+    desc: "Students create a detailed athlete profile — skills, stats, highlight reels, and academic records.",
+    color: "#86C232",
   },
   {
     num: "02",
     title: "Schools Post Openings",
-    desc: "Schools list available slots with specific requirements—positions, skills, and academic needs.",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M9 3v18M3 9h18" />
-      </svg>
-    ),
+    desc: "Schools list available slots with specific requirements — positions needed, skill levels, academic criteria.",
+    color: "#61892F",
   },
   {
     num: "03",
     title: "AI Matches Talent",
-    desc: "Our AI engine analyzes hundreds of data points to find the perfect student-school fit.",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-      </svg>
-    ),
+    desc: "Our engine analyzes hundreds of data points across six dimensions to find the perfect student-school fit.",
+    color: "#86C232",
   },
   {
     num: "04",
-    title: "Recruitment Begins",
-    desc: "Mutual matches unlock direct communication, trials, and the full recruitment workflow.",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
+    title: "Recruitment Starts",
+    desc: "Mutual matches unlock direct communication, trial scheduling, and the complete recruitment workflow.",
+    color: "#61892F",
   },
 ];
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="relative py-24">
-      <div className="mx-auto max-w-6xl px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary">Process</span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-foreground">How It Works</h2>
-          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">From profile creation to recruitment — powered by AI every step of the way.</p>
-        </motion.div>
+    <section id="how-it-works" className="relative py-28">
+      {/* Subtle side accent */}
+      <div className="absolute left-0 top-1/3 w-[1px] h-1/3" style={{ background: "linear-gradient(180deg, transparent, rgba(134,194,50,0.2), transparent)" }} />
 
-        <div className="relative">
-          {/* Connecting line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent hidden md:block" />
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+        <div className="grid lg:grid-cols-12 gap-16">
+          {/* Left header — sticky */}
+          <div className="lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:sticky lg:top-28"
+            >
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">How It Works</span>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-[-0.02em] text-foreground leading-[1.1]">
+                Four steps to your{" "}
+                <span className="gradient-neon-text">perfect match</span>
+              </h2>
+              <p className="mt-5 text-sm text-muted-foreground leading-[1.8]">
+                From profile creation to signed contract — powered by AI at every step.
+              </p>
+              <div className="mt-8 h-[2px] w-16 rounded-full" style={{ background: "linear-gradient(90deg, #86C232, transparent)" }} />
+            </motion.div>
+          </div>
 
-          <div className="grid gap-12 md:gap-16">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`flex flex-col md:flex-row items-center gap-6 ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
-              >
-                <div className={`flex-1 ${i % 2 === 1 ? "md:text-right" : ""}`}>
-                  <span className="text-xs font-bold text-primary tracking-wider">{step.num}</span>
-                  <h3 className="mt-1 text-xl font-bold text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-sm">{step.desc}</p>
-                </div>
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl glass-card border-glow text-primary shrink-0 animate-pulse-glow">
-                  {step.icon}
-                </div>
-                <div className="flex-1 hidden md:block" />
-              </motion.div>
-            ))}
+          {/* Right steps */}
+          <div className="lg:col-span-8">
+            <div className="space-y-6">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={step.num}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative flex gap-6 rounded-2xl p-6 sm:p-8 transition-all duration-500"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(134,194,50,0.03), rgba(34,38,41,0.4))",
+                    border: "1px solid rgba(134,194,50,0.06)",
+                  }}
+                >
+                  {/* Step number */}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl font-black text-sm text-primary"
+                    style={{ background: `rgba(134,194,50,0.08)` }}>
+                    {step.num}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">{step.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-[1.7]">{step.desc}</p>
+                  </div>
+                  {/* Hover accent */}
+                  <div className="absolute left-0 top-0 bottom-0 w-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: step.color }} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
