@@ -42,7 +42,7 @@ export function HeroSection() {
         </video>
         {/* Overlay gradient */}
         <div className="absolute inset-0" style={{
-          background: "linear-gradient(180deg, rgba(34,38,41,0.85) 0%, rgba(34,38,41,0.6) 40%, rgba(34,38,41,0.95) 100%)"
+          background: "linear-gradient(180deg, rgba(34,38,41,0.65) 0%, rgba(34,38,41,0.35) 40%, rgba(34,38,41,0.85) 100%)"
         }} />
       </div>
 
