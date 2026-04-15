@@ -36,13 +36,13 @@ export function HeroSection() {
           loop
           playsInline
           className="h-full w-full object-cover"
-          style={{ filter: "brightness(0.55) saturate(0.9) contrast(1.15)" }}
+          style={{ filter: "brightness(0.7) saturate(1.1) contrast(1.1)" }}
         >
           <source src={heroVideo.url} type="video/mp4" />
         </video>
         {/* Overlay gradient */}
         <div className="absolute inset-0" style={{
-          background: "linear-gradient(180deg, rgba(34,38,41,0.65) 0%, rgba(34,38,41,0.35) 40%, rgba(34,38,41,0.85) 100%)"
+          background: "linear-gradient(180deg, rgba(34,38,41,0.5) 0%, rgba(34,38,41,0.2) 40%, rgba(34,38,41,0.8) 100%)"
         }} />
       </div>
 
