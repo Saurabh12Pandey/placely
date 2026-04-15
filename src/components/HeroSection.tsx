@@ -36,7 +36,7 @@ export function HeroSection() {
           loop
           playsInline
           className="h-full w-full object-cover"
-          style={{ filter: "brightness(0.3) saturate(0.7)" }}
+          style={{ filter: "brightness(0.45) saturate(0.85) contrast(1.1)" }}
         >
           <source src={heroVideo.url} type="video/mp4" />
         </video>
