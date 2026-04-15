@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FloatingParticles } from "@/components/FloatingParticles";
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
-import patternTexture from "@/assets/pattern-texture.jpg";
 
 function MiniStatPill({ label, value, delay }: { label: string; value: string; delay: number }) {
   return (
@@ -36,25 +35,18 @@ export function HeroSection() {
           loop
           playsInline
           className="h-full w-full object-cover"
-          style={{ filter: "brightness(0.7) saturate(1.1) contrast(1.1)" }}
+          style={{ filter: "brightness(0.65) saturate(1.05) contrast(1.05)" }}
         >
           <source src={heroVideo.url} type="video/mp4" />
         </video>
-        {/* Overlay gradient */}
+        {/* Overlay gradient — lighter for stadium visibility */}
         <div className="absolute inset-0" style={{
-          background: "linear-gradient(180deg, rgba(34,38,41,0.5) 0%, rgba(34,38,41,0.2) 40%, rgba(34,38,41,0.8) 100%)"
+          background: "linear-gradient(180deg, rgba(34,38,41,0.45) 0%, rgba(34,38,41,0.15) 40%, rgba(34,38,41,0.75) 100%)"
         }} />
       </div>
 
-      {/* Pattern texture overlay */}
-      <div className="absolute inset-0 z-[1] opacity-[0.06]" style={{
-        backgroundImage: `url(${patternTexture})`,
-        backgroundSize: "cover",
-        mixBlendMode: "screen",
-      }} />
-
-      {/* Floating particles */}
-      <FloatingParticles count={25} />
+      {/* Floating particles — reduced count for performance */}
+      <FloatingParticles count={10} />
 
       {/* Asymmetric glow orbs */}
       <div className="absolute top-[15%] right-[10%] w-[500px] h-[500px] rounded-full z-[1]"
