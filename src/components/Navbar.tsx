@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
   { label: "About", href: "#about" },
-  { label: "FAQ", href: "#faq" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === "#home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const id = href.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 64;
+        const y = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+    setMobileOpen(false);
+  }, []);
 
   return (
     <motion.nav
@@ -27,7 +42,7 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="flex h-16 items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5">
+          <a href="#" className="flex items-center gap-2.5" onClick={(e) => handleNavClick(e, "#home")}>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg"
               style={{ background: "linear-gradient(135deg, #86C232, #61892F)" }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#222629" strokeWidth="2.5">
@@ -47,6 +62,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="rounded-lg px-3 py-2 text-[13px] font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
               >
                 {link.label}
@@ -90,7 +106,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className="rounded-lg px-3 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
                 </a>

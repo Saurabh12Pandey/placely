@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { FloatingParticles } from "@/components/FloatingParticles";
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import patternTexture from "@/assets/pattern-texture.jpg";
 
@@ -26,7 +27,7 @@ function MiniStatPill({ label, value, delay }: { label: string; value: string; d
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Video background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -51,6 +52,9 @@ export function HeroSection() {
         backgroundSize: "cover",
         mixBlendMode: "screen",
       }} />
+
+      {/* Floating particles */}
+      <FloatingParticles count={25} />
 
       {/* Asymmetric glow orbs */}
       <div className="absolute top-[15%] right-[10%] w-[500px] h-[500px] rounded-full z-[1]"
