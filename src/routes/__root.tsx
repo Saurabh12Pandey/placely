@@ -1,6 +1,20 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Navbar } from "@/components/Navbar";
+import { FooterSection } from "@/components/FooterSection";
 
 import appCss from "../styles.css?url";
+
+function RootComponent() {
+  return (
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <FooterSection />
+    </div>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -29,21 +43,22 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Placely — AI-Powered Football Recruitment Platform" },
+      { name: "description", content: "Connecting students and schools through intelligent AI matching." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/logo.svg",
+      },
     ],
+
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -62,8 +77,4 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
-}
-
-function RootComponent() {
-  return <Outlet />;
 }

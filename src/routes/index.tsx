@@ -1,16 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { StatsSection } from "@/components/StatsSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { AIFeaturesSection } from "@/components/AIFeaturesSection";
 import { HexagonMatchSection } from "@/components/HexagonMatchSection";
-import { ComparisonSection } from "@/components/ComparisonSection";
-import { FeaturesSection } from "@/components/FeaturesSection";
-import { PricingSection } from "@/components/PricingSection";
-import { AboutSection } from "@/components/AboutSection";
-import { FAQSection } from "@/components/FAQSection";
-import { FooterSection } from "@/components/FooterSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,19 +19,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      <Navbar />
+    <div className="flex flex-col">
       <HeroSection />
       <StatsSection />
       <HowItWorksSection />
       <AIFeaturesSection />
       <HexagonMatchSection />
-      <ComparisonSection />
-      <FeaturesSection />
-      <PricingSection />
-      <AboutSection />
-      <FAQSection />
-      <FooterSection />
     </div>
   );
 }

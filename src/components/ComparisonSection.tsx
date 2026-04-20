@@ -1,77 +1,96 @@
 import { motion } from "framer-motion";
 
 const traditional = [
-  "Manual, time-consuming scouting",
-  "Slow email chains and phone tag",
-  "No visibility into match quality",
-  "Fragmented offline workflow",
+  { text: "Manual, time-consuming scouting", detail: "Traveling to obscure trials without data." },
+  { text: "Slow email chains & gatekeepers", detail: "Wasted months waiting for a reply." },
+  { text: "Zero visibility into match quality", detail: "Committing to a school that doesn't fit." },
+  { text: "Fragmented offline workflow", detail: "Paper resumes and lost connections." },
 ];
 
 const placely = [
-  "AI matches in real-time",
-  "Instant in-platform messaging",
-  "Six-dimension compatibility score",
-  "End-to-end digital pipeline",
+  { text: "AI-driven real-time discovery", detail: "Matches found while you're training." },
+  { text: "Instant platform-direct access", detail: "Direct line to head recruitment scouts." },
+  { text: "6-Dimension compatibility scoring", detail: "Mathematically verified suitability." },
+  { text: "End-to-end digital pipeline", detail: "Track every lead from initial trial to contract." },
 ];
 
 export function ComparisonSection() {
   return (
-    <section className="relative py-28">
-      <div className="mx-auto max-w-5xl px-6 sm:px-8">
+    <section className="relative py-32 bg-background overflow-hidden">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">The Difference</span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-[-0.02em] text-foreground">Old way vs. Placely</h2>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-6">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">The Logic</span>
+          </div>
+          <h2 className="text-4xl sm:text-6xl font-black tracking-[-0.03em] text-foreground">
+            Tradition vs.<br />
+            <span className="gradient-neon-text">Transformation.</span>
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-px rounded-2xl overflow-hidden" style={{ background: "rgba(134,194,50,0.06)" }}>
-          {/* Traditional */}
+        <div className="grid lg:grid-cols-2 gap-8 relative">
+          {/* Decorative Divider */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/5 md:block hidden" />
+
+          {/* Traditional Way */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-background p-8 sm:p-10"
+            className="group relative p-8 sm:p-12 rounded-[40px] border border-red-500/10 bg-red-500/[0.02] hover:bg-red-500/[0.04] transition-all duration-500"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: "rgba(255,80,80,0.1)" }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff5050" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-12 w-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </div>
-              <h3 className="text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground">Traditional</h3>
+              <div>
+                <h3 className="text-lg font-black uppercase tracking-widest text-red-500/80">Traditional Way</h3>
+                <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Status Quo</p>
+              </div>
             </div>
-            <ul className="space-y-5">
-              {traditional.map(item => (
-                <li key={item} className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0" style={{ background: "rgba(255,80,80,0.4)" }} />
-                  <span className="text-sm text-muted-foreground leading-[1.6]">{item}</span>
+
+            <ul className="space-y-8">
+              {traditional.map((item, idx) => (
+                <li key={idx} className="relative pl-8">
+                  <div className="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-red-500/40" />
+                  <p className="text-base font-bold text-foreground/80 mb-1">{item.text}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Placely */}
+          {/* Placely AI way */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="p-8 sm:p-10"
-            style={{ background: "linear-gradient(145deg, rgba(134,194,50,0.04), var(--background))" }}
+            className="group relative p-8 sm:p-12 rounded-[40px] border border-primary/20 bg-primary/[0.02] hover:bg-primary/[0.04] transition-all duration-500 overflow-hidden shadow-2xl"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: "rgba(134,194,50,0.1)" }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#86C232" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            {/* Shimmer Effect */}
+            <div className="absolute inset-x-0 -top-px h-32 bg-gradient-to-b from-primary/10 to-transparent blur-3xl opacity-50" />
+            
+            <div className="relative flex items-center gap-4 mb-12">
+              <div className="h-12 w-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
-              <h3 className="text-sm font-bold uppercase tracking-[0.1em] text-primary">Placely AI</h3>
+              <div>
+                <h3 className="text-lg font-black uppercase tracking-widest text-primary">Placely Intelligence</h3>
+                <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mt-1">Neural Scouting</p>
+              </div>
             </div>
-            <ul className="space-y-5">
-              {placely.map(item => (
-                <li key={item} className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 bg-primary" />
-                  <span className="text-sm text-foreground leading-[1.6]">{item}</span>
+
+            <ul className="relative space-y-8">
+              {placely.map((item, idx) => (
+                <li key={idx} className="relative pl-8">
+                  <div className="absolute left-0 top-1.5 w-2 h-2 rounded-sm bg-primary shadow-[0_0_8px_rgba(134,194,50,0.6)]" />
+                  <p className="text-base font-black text-foreground mb-1">{item.text}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed italic">{item.detail}</p>
                 </li>
               ))}
             </ul>

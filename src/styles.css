@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'Metara';
+  src: url('/fonts/metara.otf') format('opentype'),
+       url('/fonts/metara.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -54,24 +64,24 @@
 
 :root {
   --radius: 0.75rem;
-  --font-family-display: 'Inter', system-ui, sans-serif;
-  --font-family-body: 'Inter', system-ui, sans-serif;
+  --font-family-display: 'Metara', 'Inter', system-ui, sans-serif;
+  --font-family-body: 'Metara', 'Inter', system-ui, sans-serif;
 
-  /* Placely dark theme as default */
-  --background: oklch(0.18 0.005 240);
-  --foreground: oklch(0.95 0.005 240);
-  --card: oklch(0.22 0.008 240);
-  --card-foreground: oklch(0.95 0.005 240);
-  --popover: oklch(0.22 0.008 240);
-  --popover-foreground: oklch(0.95 0.005 240);
-  --primary: oklch(0.74 0.18 128);
-  --primary-foreground: oklch(0.15 0.01 240);
-  --secondary: oklch(0.48 0.1 128);
-  --secondary-foreground: oklch(0.95 0.005 240);
-  --muted: oklch(0.30 0.01 240);
-  --muted-foreground: oklch(0.58 0.01 240);
-  --accent: oklch(0.35 0.01 240);
-  --accent-foreground: oklch(0.95 0.005 240);
+  /* Placely Elite Match Brand Palette */
+  --background: oklch(0.24 0.01 240); /* #222629 */
+  --foreground: oklch(0.98 0.01 240);
+  --card: oklch(0.28 0.01 240);
+  --card-foreground: oklch(0.98 0.01 240);
+  --popover: oklch(0.28 0.01 240);
+  --popover-foreground: oklch(0.98 0.01 240);
+  --primary: oklch(0.74 0.18 128); /* #86C232 */
+  --primary-foreground: oklch(0.2 0.01 240);
+  --secondary: oklch(0.53 0.12 128); /* #61892F */
+  --secondary-foreground: oklch(0.98 0.01 240);
+  --muted: oklch(0.38 0.01 240); /* #474B4F */
+  --muted-foreground: oklch(0.7 0.01 240);
+  --accent: oklch(0.51 0.01 240); /* #6B6E70 */
+  --accent-foreground: oklch(0.98 0.01 240);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.95 0.005 240);
   --border: oklch(0.35 0.01 240);
@@ -118,7 +128,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 }
@@ -141,6 +156,144 @@
   .text-glow {
     text-shadow: 0 0 20px oklch(0.74 0.18 128 / 0.5);
   }
+
+  .text-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    letter-spacing: -0.02em;
+  }
+
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.02),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.02)
+    );
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .technical-grid {
+    background-image: 
+      linear-gradient(to right, oklch(0.74 0.18 128 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.74 0.18 128 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent);
+  }
+
+  .scanner-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Scanner only runs on group-hover for performance */
+  .scanner-line::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, oklch(0.74 0.18 128 / 0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .scanner-line:hover::after {
+    animation: scan 2.5s linear 1;
+    opacity: 1;
+  }
+
+  @keyframes scan {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  /* Smooth slow spin for decorative circles */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Scroll reveal utility */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Hover Text Reveal ──────────────────────────────────────────
+   * Usage: wrap a section/card with the .hover-reveal-zone class.
+   * Headings use <RevealText> which splits into .reveal-word spans.
+   * Paragraphs use .reveal-paragraph for a softer fade-lift effect.
+   * ── */
+
+  /* Each word chip sits at rest: slightly dimmed */
+  .reveal-word {
+    display: inline-block;
+    opacity: 0.55;
+    transform: translateY(3px);
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    /* --i is set inline as CSS custom property for stagger */
+    transition-delay: calc(var(--i, 0) * 0.045s);
+  }
+
+  /* When the parent zone is hovered, fully reveal each word */
+  .hover-reveal-zone:hover .reveal-word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Paragraphs that are muted and fade in on hover */
+  .reveal-paragraph {
+    opacity: 0.5;
+    transform: translateY(4px);
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0.08s;
+  }
+
+  .hover-reveal-zone:hover .reveal-paragraph {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+
+  /* Sub-labels and metadata that trail in last */
+  .reveal-meta {
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+    transition-delay: 0.18s;
+  }
+
+  .hover-reveal-zone:hover .reveal-meta {
+    opacity: 0.6;
+  }
+
+  /* Sections that are always at full opacity — no dimming on scroll */
+  .hover-reveal-zone .reveal-word {
+    will-change: opacity, transform;
+  }
+
 
   .gradient-neon {
     background: var(--gradient-neon);
@@ -178,31 +331,55 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px oklch(0.74 0.18 128 / 0.2); }
-  50% { box-shadow: 0 0 40px oklch(0.74 0.18 128 / 0.5); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(0.74 0.18 128 / 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px oklch(0.74 0.18 128 / 0.5);
+  }
 }
 
 @keyframes countUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: oklch(0.18 0.005 240);
 }
+
 ::-webkit-scrollbar-thumb {
   background: oklch(0.35 0.01 240);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.74 0.18 128 / 0.5);
 }
